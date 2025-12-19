@@ -16,7 +16,8 @@ public class Main {
                 new BubbleSortStrategy(),
                 new SelectionSortStrategy(),
                 new InsertionSortStrategy(),
-                new MergeSortStrategy()
+                new MergeSortStrategy(),
+                new QuickSortStrategy()
         );
 
         SortingContext context = new SortingContext();
