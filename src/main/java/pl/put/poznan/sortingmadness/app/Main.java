@@ -15,7 +15,8 @@ public class Main {
         List<SortingStrategy> strategies = List.of(
                 new BubbleSortStrategy(),
                 new SelectionSortStrategy(),
-                new InsertionSortStrategy()
+                new InsertionSortStrategy(),
+                new MergeSortStrategy()
         );
 
         SortingContext context = new SortingContext();
