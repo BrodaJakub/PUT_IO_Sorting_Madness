@@ -13,7 +13,8 @@ public class Main {
         int[] data = {7, 3, 9, 1, 5, 4, 8, 2, 6};
 
         List<SortingStrategy> strategies = List.of(
-                new BubbleSortStrategy()
+                new BubbleSortStrategy(),
+                new SelectionSortStrategy()
         );
 
         SortingContext context = new SortingContext();
