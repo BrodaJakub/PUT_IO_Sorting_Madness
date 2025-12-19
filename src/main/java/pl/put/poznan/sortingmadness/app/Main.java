@@ -17,7 +17,8 @@ public class Main {
                 new SelectionSortStrategy(),
                 new InsertionSortStrategy(),
                 new MergeSortStrategy(),
-                new QuickSortStrategy()
+                new QuickSortStrategy(),
+                new HeapSortStrategy()
         );
 
         SortingContext context = new SortingContext();
