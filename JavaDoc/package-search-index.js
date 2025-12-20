@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"pl.put.poznan.sortingmadness.app"},{"l":"pl.put.poznan.sortingmadness.Logic.context"},{"l":"pl.put.poznan.sortingmadness.Logic.model"},{"l":"pl.put.poznan.sortingmadness.Logic.strategy"}]
