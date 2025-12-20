@@ -1,4 +1,4 @@
-name: Java CI
+name: Build and upload jar and JavaDoc
 
 on:
   push:
