@@ -4,7 +4,7 @@ import pl.put.poznan.sortingmadness.Logic.model.SortResult;
 
 public interface SortingStrategy {
 
-    SortResult execute(int[] array);
+	<T extends Comparable<T>> SortResult execute(T[] array);
 
-    String getName();
+	String getName();
 }

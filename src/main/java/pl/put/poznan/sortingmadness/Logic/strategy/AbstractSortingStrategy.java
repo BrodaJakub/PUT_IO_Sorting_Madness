@@ -4,16 +4,14 @@ import pl.put.poznan.sortingmadness.Logic.model.SortResult;
 
 public abstract class AbstractSortingStrategy implements SortingStrategy {
 
-    @Override
-    public SortResult execute(int[] input) {
-        int[] copy = input.clone();
+	public <T extends Comparable<T>> SortResult execute(T[] input) {
 
-        long start = System.nanoTime();
-        sort(copy);
-        long end = System.nanoTime();
+		long start = System.nanoTime();
+		sort(input);
+		long end = System.nanoTime();
 
-        return new SortResult(getName(), end - start, copy);
-    }
+		return new SortResult(getName(), end - start);
+	}
 
-    protected abstract void sort(int[] array);
+	protected abstract <T extends Comparable<T>> void sort(T[] array);
 }

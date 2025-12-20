@@ -1,26 +1,26 @@
 package pl.put.poznan.sortingmadness.Logic.strategy;
 
-public class SortResult {
+public class SortResult<T> {
 
-    private final String algorithmName;
-    private final long executionTimeNano;
-    private final int[] sortedArray;
+	private final String algorithmName;
+	private final long executionTimeNano;
+	private final T[] sortedArray;
 
-    public SortResult(String algorithmName, long executionTimeNano, int[] sortedArray) {
-        this.algorithmName = algorithmName;
-        this.executionTimeNano = executionTimeNano;
-        this.sortedArray = sortedArray;
-    }
+	public SortResult(String algorithmName, long executionTimeNano, T[] sortedArray) {
+		this.algorithmName = algorithmName;
+		this.executionTimeNano = executionTimeNano;
+		this.sortedArray = sortedArray;
+	}
 
-    public String getAlgorithmName() {
-        return algorithmName;
-    }
+	public String getAlgorithmName() {
+		return algorithmName;
+	}
 
-    public long getExecutionTimeNano() {
-        return executionTimeNano;
-    }
+	public long getExecutionTimeNano() {
+		return executionTimeNano;
+	}
 
-    public int[] getSortedArray() {
-        return sortedArray;
-    }
+	public T[] getSortedArray() {
+		return sortedArray;
+	}
 }
