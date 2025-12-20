@@ -6,10 +6,14 @@ import pl.put.poznan.sortingmadness.Logic.strategy.*;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class Main {
+	final static Logger logger = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) {
-
+    	logger.debug("Początek programu");
         int[] data = {7, 3, 9, 1, 5, 4, 8, 2, 6};
 
         List<SortingStrategy> strategies = List.of(
