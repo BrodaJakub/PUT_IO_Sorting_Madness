@@ -1,3 +1,4 @@
+
 package pl.put.poznan.sortingmadness.Logic.strategy;
 
 public class SortResult<T> {
