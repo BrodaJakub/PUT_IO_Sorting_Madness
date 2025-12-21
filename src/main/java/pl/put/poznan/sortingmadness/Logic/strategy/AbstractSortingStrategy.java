@@ -1,4 +1,5 @@
 package pl.put.poznan.sortingmadness.Logic.strategy;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -8,18 +9,16 @@ public abstract class AbstractSortingStrategy implements SortingStrategy {
 
 	final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Override
-    public SortResult execute(int[] input) {
-    	logger.info("Początek  sortowania {}. elementowej tabeli algorytmem {}. ", input.length ,getName());
-        int[] copy = input.clone();
+	public <T extends Comparable<T>> SortResult execute(T[] input) {
+		logger.info("Początek  sortowania {}. elementowej tabeli algorytmem {}. ", input.length, getName());
 
-        long start = System.nanoTime();
-        sort(copy);
-        long end = System.nanoTime();
-    	logger.info("Koniec sortowania {}. elementowej tabeli  algorytmem {}. ",input.length,getName());
-        return new SortResult(getName(), end - start, copy);
+		long start = System.nanoTime();
+		sort(input);
+		long end = System.nanoTime();
+		logger.info("Koniec sortowania {}. elementowej tabeli  algorytmem {}. ", input.length, getName());
 
-    }
+		return new SortResult(getName(), end - start);
+	}
 
-    protected abstract void sort(int[] array);
+	protected abstract <T extends Comparable<T>> void sort(T[] array);
 }
