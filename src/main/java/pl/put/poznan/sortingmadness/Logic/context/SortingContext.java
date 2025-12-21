@@ -5,16 +5,16 @@ import pl.put.poznan.sortingmadness.Logic.strategy.SortingStrategy;
 
 public class SortingContext {
 
-    private SortingStrategy strategy;
+	private SortingStrategy strategy;
 
-    public void setStrategy(SortingStrategy strategy) {
-        this.strategy = strategy;
-    }
+	public void setStrategy(SortingStrategy strategy) {
+		this.strategy = strategy;
+	}
 
-    public SortResult execute(int[] data) {
-        if (strategy == null) {
-            throw new IllegalStateException("Nie ustawiono strategii sortowania");
-        }
-        return strategy.execute(data);
-    }
+	public <T extends Comparable<T>> SortResult execute(T[] data) {
+		if (strategy == null) {
+			throw new IllegalStateException("Nie ustawiono strategii sortowania");
+		}
+		return strategy.execute(data);
+	}
 }
