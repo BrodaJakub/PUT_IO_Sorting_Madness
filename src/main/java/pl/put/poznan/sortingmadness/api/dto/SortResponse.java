@@ -1,12 +1,14 @@
 package pl.put.poznan.sortingmadness.api.dto;
 
-public class SortResponse {
+import java.util.List;
+
+public class SortResponse<T extends Comparable<T>> {
 
     private final String algorithm;
     private final double executionTimeMs;
-    private final int[] sortedData;
+    private final List<T> sortedData;
 
-    public SortResponse(String algorithm, double executionTimeMs, int[] sortedData) {
+    public SortResponse(String algorithm, double executionTimeMs, List<T> sortedData) {
         this.algorithm = algorithm;
         this.executionTimeMs = executionTimeMs;
         this.sortedData = sortedData;
@@ -20,7 +22,7 @@ public class SortResponse {
         return executionTimeMs;
     }
 
-    public int[] getSortedData() {
+    public List<T> getSortedData() {
         return sortedData;
     }
 }

@@ -1,10 +1,14 @@
 package pl.put.poznan.sortingmadness.Logic.service;
 
 import org.springframework.stereotype.Service;
+
 import java.util.Map;
+
 import pl.put.poznan.sortingmadness.Logic.model.SortResult;
 import pl.put.poznan.sortingmadness.Logic.strategy.*;
 import pl.put.poznan.sortingmadness.Logic.context.SortingContext;
+
+import java.util.List;
 
 @Service
 public class SortingService {
@@ -18,7 +22,7 @@ public class SortingService {
             "heap", new HeapSortStrategy()
     );
 
-    public SortResult sort(String algorithm, int[] data) {
+    public <T extends Comparable<T>> SortResult sort(String algorithm, List<T> data) {
 
         SortingStrategy strategy = strategies.get(algorithm.toLowerCase());
         if (strategy == null) {

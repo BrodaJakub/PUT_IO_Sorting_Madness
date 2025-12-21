@@ -3,18 +3,20 @@ package pl.put.poznan.sortingmadness.Logic.context;
 import pl.put.poznan.sortingmadness.Logic.model.SortResult;
 import pl.put.poznan.sortingmadness.Logic.strategy.SortingStrategy;
 
+import java.util.List;
+
 public class SortingContext {
 
-	private SortingStrategy strategy;
+    private SortingStrategy strategy;
 
-	public void setStrategy(SortingStrategy strategy) {
-		this.strategy = strategy;
-	}
+    public void setStrategy(SortingStrategy strategy) {
+        this.strategy = strategy;
+    }
 
-	public <T extends Comparable<T>> SortResult execute(T[] data) {
-		if (strategy == null) {
-			throw new IllegalStateException("Nie ustawiono strategii sortowania");
-		}
-		return strategy.execute(data);
-	}
+    public <T extends Comparable<T>> SortResult execute(List<T> data) {
+        if (strategy == null) {
+            throw new IllegalStateException("Nie ustawiono strategii sortowania");
+        }
+        return strategy.execute(data);
+    }
 }

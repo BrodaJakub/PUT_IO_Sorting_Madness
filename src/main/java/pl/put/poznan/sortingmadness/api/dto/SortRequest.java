@@ -1,15 +1,23 @@
 package pl.put.poznan.sortingmadness.api.dto;
 
-public class SortRequest {
+import java.util.List;
 
-    private String algorithm;
-    private int[] data;
+public class SortRequest<T extends Comparable<T>> {
+
+    private final String algorithm;
+    private final List<T> data;
+
+    public SortRequest(String algorithm, List<T> data) {
+        this.algorithm = algorithm;
+        this.data = data;
+    }
 
     public String getAlgorithm() {
         return algorithm;
     }
 
-    public int[] getData() {
+
+    public List<T> getData() {
         return data;
     }
 }
