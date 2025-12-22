@@ -4,16 +4,21 @@ import java.util.List;
 
 public class SortRequest<T extends Comparable<T>> {
 
-    private final String algorithm;
+    private final List<String> algorithms;
     private final List<T> data;
 
-    public SortRequest(String algorithm, List<T> data) {
-        this.algorithm = algorithm;
+    public SortRequest(List<String> algorithms, List<T> data) {
+        this.algorithms = algorithms;
         this.data = data;
     }
 
-    public String getAlgorithm() {
-        return algorithm;
+    public List<String> getAlgorithms() {
+        return algorithms;
+    }
+
+    public boolean isValid() {
+        return algorithms != null && !algorithms.isEmpty()
+                && data != null && !data.isEmpty();
     }
 
 
