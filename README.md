@@ -23,3 +23,6 @@ curl --request POST \
  2. Michał Bróździński - 160084
  3. Paweł Wichowski - 160211
  4. Dawid Pasler - 160212
+
+# UML
+<img width="1184" height="664" alt="image" src="https://github.com/user-attachments/assets/232023b7-db14-4fe7-911e-cb1823c1e395" />
