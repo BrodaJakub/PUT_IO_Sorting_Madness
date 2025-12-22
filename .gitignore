@@ -41,6 +41,7 @@ bin/
 out/
 target/
 build/
+docs/
 
 JavaDoc/
 .DS_Store
