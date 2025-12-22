@@ -23,7 +23,7 @@ jobs:
       - name: Generate JavaDoc
         run: mvn javadoc:javadoc
       - name: Copy files
-        run: mkdir -p staging/jar && mkdir -p staging/docs  && cp target/*.jar staging/jar && cp -R target/site/apidocs staging/docs
+        run: mkdir -p staging/jar && mkdir -p staging/docs  && cp target/*.jar staging/jar && cp -R target/reports/apidocs staging/docs
       - uses: actions/upload-artifact@v4
         with:
           name: Jar Package
