@@ -3,7 +3,7 @@ Aplikacja służąca do sortowania zbiorów danych różnymi algorytmami. Ma pom
 
 **Definition of Done:** [Google Spreadsheets](https://docs.google.com/spreadsheets/d/e/2PACX-1vTn6j3M8pmGEzrsQk8mXse7lVHUdhYWkfxbkQiYI23rBtwM4N3bWw0qtupW-gesfCkcYasnZ-eEXl-F/pubhtml#gid=0)
 
-# Przykład użycia
+# Przykład użycia Linux
 ```
 curl --request POST \
   --url http://127.0.0.1:8080/api/sort/integers \
@@ -17,6 +17,21 @@ curl --request POST \
   --header 'content-type: application/json' \
   --data '{"algorithms": ["merge"],"data": ["test3","test","test2"]}'
 ```
+
+# Przykład użycia Windows
+Polecenie klienta:
+```
+curl -X POST http://localhost:8082/api/sort/integers -H "Content-Type: application/json" -d "{\"algorithms\":[\"merge\",\"bubble\"],\"data\":[7,3,9,1,5]}"
+```
+Odpowiedź serwera:
+```
+{"algorithmResults":[
+{"algorithm":"Merge Sort","executionTimeNs":5800.0,"sortedData":[1,3,5,7,9]},
+{"algorithm":"Bubble Sort","executionTimeNs":17700.0,"sortedData":[1,3,5,7,9]}
+]}
+```
+
+
 
 # Skład grupy
  1. Jakub Broda - 160147
