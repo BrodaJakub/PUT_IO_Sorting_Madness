@@ -40,5 +40,4 @@ Odpowiedź serwera:
  4. Dawid Pasler - 160212
 
 # UML
-<img width="963" height="650" alt="image" src="https://github.com/user-attachments/assets/432e6d9a-f2a3-4678-888f-d9364d50fba3" />
-
+<img width="1555" height="1419" alt="image" src="https://github.com/user-attachments/assets/bcfbd0ff-bb8f-4758-87fb-98b7932af4d1" />
