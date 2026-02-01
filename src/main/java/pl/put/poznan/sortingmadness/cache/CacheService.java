@@ -39,16 +39,13 @@ public class CacheService {
         Instant now = Instant.now();
         Instant expiresAt = (ttl == null) ? null : now.plus(ttl);
 
-        CacheEntry entry = new CacheEntry(
-                cacheKey,
-                requestJson,
-                responseJson,
-                now,
-                expiresAt
-        );
+        CacheEntry entry = repository.findByCacheKey(cacheKey)
+                .orElseGet(() -> new CacheEntry(cacheKey, requestJson, responseJson, now, expiresAt));
 
-        // save() w razie konfliktu unikalności rzuci wyjątek — na początek OK.
-        // Później (optymalizacja) można zrobić "upsert" (find->update->save).
+        entry.setRequestJson(requestJson);
+        entry.setResponseJson(responseJson);
+        entry.setExpiresAt(expiresAt);
+
         repository.save(entry);
     }
 

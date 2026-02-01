@@ -80,4 +80,13 @@ public class CacheEntry {
     public void setExpiresAt(Instant expiresAt) {
         this.expiresAt = expiresAt;
     }
+
+    public void setRequestJson(String requestJson) {
+        this.requestJson = requestJson;
+    }
+
+    public void setResponseJson(String responseJson) {
+        this.responseJson = responseJson;
+    }
+
 }
