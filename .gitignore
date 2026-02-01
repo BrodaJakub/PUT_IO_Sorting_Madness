@@ -46,4 +46,7 @@ docs/
 JavaDoc/
 .DS_Store
 
+/data/
+*.mv.db
+*.trace.db
 
