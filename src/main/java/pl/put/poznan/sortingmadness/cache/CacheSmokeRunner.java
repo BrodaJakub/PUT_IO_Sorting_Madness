@@ -16,8 +16,12 @@ public class CacheSmokeRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        // Jednorazowy wpis testowy, żeby łatwo sprawdzić tabelę w H2
         String key = "smoke_test_key_do_not_use";
+
+        if (cacheService.getResponseJsonIfPresent(key).isPresent()) {
+            return;
+        }
+
         cacheService.put(key, "{\"smoke\":true}", "{\"ok\":true}", Duration.ofMinutes(10));
     }
 }
