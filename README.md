@@ -41,3 +41,82 @@ Odpowiedź serwera:
 
 # UML
 <img width="1555" height="1419" alt="image" src="https://github.com/user-attachments/assets/bcfbd0ff-bb8f-4758-87fb-98b7932af4d1" />
+
+
+## Cache’owanie wyników sortowania
+
+### Cel
+Celem cache’owania jest ograniczenie liczby ponownych obliczeń dla identycznych zapytań sortujących.  
+Jeżeli użytkownik wysyła to samo zapytanie (te same dane wejściowe oraz te same algorytmy), wynik sortowania jest zwracany z cache zamiast być liczony ponownie.
+
+Rozwiązanie poprawia:
+- czas odpowiedzi API,
+- zużycie CPU,
+- wydajność aplikacji przy powtarzalnych zapytaniach.
+
+### Zastosowana technologia
+Cache został zaimplementowany przy użyciu:
+- **H2 Database** – lekka, wbudowana baza danych w trybie plikowym,
+- **Spring Data JPA** – warstwa dostępu do danych.
+
+Rozwiązanie nie wymaga dodatkowej infrastruktury (np. Dockera ani zewnętrznego serwera cache).
+
+### Zakres cache’owania
+Cache’owana jest **cała odpowiedź API** (`SortResponse`) dla endpointów:
+- `/api/sort/integers`
+- `/api/sort/strings`
+
+Każdy wpis cache odpowiada jednemu, konkretnemu zapytaniu sortującemu.
+
+### Klucz cache
+Klucz cache jest wyliczany deterministycznie na podstawie:
+- typu sortowania (`integers` / `strings`),
+- listy algorytmów sortowania,
+- danych wejściowych.
+
+Proces tworzenia klucza:
+1. Normalizacja danych (np. nazwy algorytmów → lowercase).
+2. Utworzenie kanonicznego obiektu JSON z danych zapytania.
+3. Obliczenie skrótu SHA-256 z tego JSON-a.
+4. Uzyskany hash stanowi unikalny `cache_key`.
+
+Dzięki temu identyczne zapytania zawsze mapują się na ten sam wpis cache.
+
+### Struktura danych cache
+W bazie H2 przechowywana jest tabela `CACHE_ENTRY`, zawierająca:
+- `cache_key` – unikalny klucz cache,
+- `request_json` – zapytanie zapisane w formacie JSON,
+- `response_json` – odpowiedź API w formacie JSON,
+- `created_at` – czas utworzenia wpisu,
+- `expires_at` – czas wygaśnięcia wpisu (TTL).
+
+Na kolumnę `cache_key` nałożony jest **unikalny indeks**, zapobiegający duplikatom.
+
+### Algorytm działania
+Dla każdego zapytania sortującego:
+1. Generowany jest klucz cache (`cache_key`).
+2. Aplikacja sprawdza, czy wpis istnieje i nie jest przeterminowany.
+3. **Cache HIT** – odpowiedź jest deserializowana z JSON i zwracana bez wykonywania sortowania.
+4. **Cache MISS** – sortowanie jest wykonywane, wynik zapisywany w cache i zwracany do klienta.
+
+### TTL (Time To Live)
+Czas życia wpisów cache jest konfigurowalny w pliku `application.properties`:
+- `cache.ttl-seconds=86400`
+
+Po przekroczeniu czasu `expires_at` wpis cache jest traktowany jako nieważny.
+
+### Informacja o użyciu cache
+W odpowiedzi HTTP dodawany jest nagłówek:
+- `X-Cache: HIT`
+- `X-Cache: MISS`
+
+
+Pozwala to jednoznacznie stwierdzić, czy wynik pochodził z cache, czy został obliczony na nowo.
+
+### Uzasadnienie wyboru rozwiązania
+Zastosowanie bazy H2 jako cache:
+- upraszcza konfigurację projektu,
+- umożliwia szybkie uruchomienie aplikacji lokalnie,
+- jest wystarczające dla prostego cache’owania wyników obliczeń.
+
+Architektura umożliwia w przyszłości zastąpienie H2 innym mechanizmem cache (np. Redis) bez zmian w warstwie kontrolerów.
