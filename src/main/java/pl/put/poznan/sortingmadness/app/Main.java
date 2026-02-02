@@ -3,6 +3,9 @@ package pl.put.poznan.sortingmadness.app;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import pl.put.poznan.sortingmadness.Logic.context.SortingContext;
 import pl.put.poznan.sortingmadness.Logic.model.SortResult;
 import pl.put.poznan.sortingmadness.Logic.strategy.*;
@@ -16,8 +19,13 @@ import org.slf4j.LoggerFactory;
 @ComponentScan({
         "pl.put.poznan.sortingmadness.app",
         "pl.put.poznan.sortingmadness.Logic",
-        "pl.put.poznan.sortingmadness.api"
+        "pl.put.poznan.sortingmadness.api",
+        "pl.put.poznan.sortingmadness.cache"
 })
+
+@EntityScan("pl.put.poznan.sortingmadness.cache")
+@EnableJpaRepositories("pl.put.poznan.sortingmadness.cache")
+
 public class Main {
 	final static Logger logger = LoggerFactory.getLogger(Main.class);
 
