@@ -30,15 +30,13 @@ public class BubbleSortStrategy extends AbstractSortingStrategy {
      * Sortuje listę elementów przy użyciu algorytmu Bubble Sort.
      *
      * @param array lista elementów do posortowania
-     * @param <T> typ elementów, który musi implementować {@link Comparable}
+     * @param <T>   typ elementów, który musi implementować {@link Comparable}
      */
     @Override
     protected <T extends Comparable<T>> void sort(List<T> array) {
-        for (int i = 0; i < array.size() - 1;
-             i++) {
+        for (int i = 0; i < array.size() - 1; i++) {
             boolean swapped = false;
-            for (int j = 0; j < array.size() - 1 - i;
-                 j++) {
+            for (int j = 0; j < array.size() - 1 - i; j++) {
                 if (array.get(j).compareTo(array.get(j + 1)) > 0) {
                     T tmp = array.get(j);
                     array.set(j, array.get(j + 1));
